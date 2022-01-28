@@ -1,0 +1,40 @@
+{
+  "name": "mono-descargar",
+  "version": "0.1.0",
+  "description": "a common video downloader for afu",
+  "main": "./src/mono.js",
+  "scripts": {
+    "dev": "npx webpack --config webpack.config.js --node-env development --mode none --watch",
+    "build": "npx webpack --config webpack.config.js --node-env production --mode none --watch",
+    "deploy": "npx webpack --config webpack.config.js --node-env production --mode none && node deploy.js"
+  },
+  "author": "milkliker",
+  "license": "MIT",
+  "devDependencies": {
+    "@babel/core": "^7.14.0",
+    "@babel/plugin-transform-regenerator": "^7.13.15",
+    "@babel/plugin-transform-runtime": "^7.13.15",
+    "@babel/preset-env": "^7.14.1",
+    "@babel/runtime": "^7.14.0",
+    "@babel/runtime-corejs3": "^7.14.0",
+    "@rbarilani/remove-source-map-url-webpack-plugin": "^1.1.0",
+    "babel-loader": "^8.2.2",
+    "copy-webpack-plugin": "^10.0.0",
+    "cos-nodejs-sdk-v5": "^2.11.6",
+    "css-loader": "^6.5.1",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "string-replace-loader": "^3.1.0",
+    "style-loader": "^3.3.1",
+    "vue-loader": "^15.9.8",
+    "vue-template-compiler": "^2.6.14",
+    "webpack": "^5.64.1",
+    "webpack-cli": "^4.9.1"
+  },
+  "dependencies": {
+    "blueimp-md5": "^2.19.0",
+    "express": "^4.17.2",
+    "jquery": "^3.6.0",
+    "vue": "^2.6.14"
+  }
+}
