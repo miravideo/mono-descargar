@@ -82,16 +82,6 @@ class DownloadManager {
     item.container.appendChild(vm.$el);
     item.$vm = vm.$children[0];
     item.$vm.$on('download', this.download);
-
-    // if (!item.dom.hasClass(DL_BTN_CLASS)) item.dom.addClass(DL_BTN_CLASS);
-    // item.dom.html(DL_HTML);
-    // item.dom.click((e) => {
-    //   if (!isDragging(item)) download(item);
-    //   return false;
-    // })
-
-    // item.pdom.append(item.dom);
-    // setItemStatus(item, STATUS.init);
   }
 
   download(item) {
@@ -139,10 +129,10 @@ class DownloadManager {
 let instance;
 export default {
   FAIL_TO_DEFAULT,
+  jQuery: $,
+  md5,
   init: (options) => {
     if (!instance) instance = new DownloadManager(options || {});
-    if (!window.jQuery) window.jQuery = $;
-    if (!window.$) window.$ = $;
     return instance;
   }
 }
