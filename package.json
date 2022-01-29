@@ -1,6 +1,6 @@
 {
   "name": "mono-descargar",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "a common video downloader for afu",
   "main": "./src/mono.js",
   "scripts": {

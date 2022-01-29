@@ -14,6 +14,10 @@ app.get('/*.user.js', (req, res) => {
   res.sendFile(__dirname + '/dist' + req.path);
 })
 
+app.get('/mono.*.min.js', (req, res) => {
+  res.sendFile(__dirname + '/dist/mono.min.js');
+})
+
 app.get('/mono.*.js', (req, res) => {
   res.sendFile(__dirname + '/dist/mono.js');
 })

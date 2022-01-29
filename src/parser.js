@@ -28,7 +28,7 @@ module.exports = async function () {
     const id = `mono-${md5(url)}`
     const container = this.parentElement;
     const position = { x: -10, y: 10 };
-    baseItems.push({id, url, meta, container, position});
+    baseItems.push({id, url, meta, container, position });
   })
 
   return baseItems;

@@ -107,17 +107,16 @@ class DownloadManager {
         if (progress) {
           try {
             item.progress = parseFloat(progress);
-            // if (progress > 0) setItemProgress(item, progress);
           } catch (e) {}
         }
       },
       onerror: res => {
         console.log('onerror', res);
-        // setTimeout(() => setItemStatus(item, STATUS.init), 500);
+        setTimeout(() => item.status = 'init', 500);
       },
       onload: res => {
         console.log('onload', res);
-        // setItemStatus(item, STATUS.done);
+        item.status = 'done';
       }
     }
 
