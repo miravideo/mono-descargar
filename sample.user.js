@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         mono-sample
 // @namespace    http://tampermonkey.net/
-// @version      0.3.0
+// @version      0.4.0
 // @description  a video downloader for afu
 // @author       milkliker
 // @license      MIT License
