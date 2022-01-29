@@ -9,7 +9,7 @@
 // @grant        GM_download
 // @include      *://*/*
 // @inject-into  page
-// @require      https://raw.githubusercontent.com/miravideo/mono-descargar/v0.3.0/dist/mono.min.js
+// @require      https://raw.githubusercontent.com/miravideo/mono-descargar/v0.4.0/dist/mono.min.js
 // @downloadURL  https://raw.githubusercontent.com/miravideo/mono-descargar/master/sample.user.js
 // ==/UserScript==
 
