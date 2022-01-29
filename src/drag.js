@@ -1,4 +1,6 @@
 
+const $ = require('jquery');
+
 const MOVE_KEY = 'hasMove'
 const X_KEY = 'offsetX'
 const Y_KEY = 'offsetY'
