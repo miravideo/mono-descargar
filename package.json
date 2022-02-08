@@ -5,8 +5,7 @@
   "main": "./src/mono.js",
   "scripts": {
     "dev": "npx webpack --config webpack.config.js --node-env development --mode none --watch",
-    "build": "npx webpack --config webpack.config.js --node-env production --mode none --watch",
-    "deploy": "npx webpack --config webpack.config.js --node-env production --mode none && node deploy.js"
+    "build": "npx webpack --config webpack.config.js --node-env production --mode none"
   },
   "author": "milkliker",
   "license": "MIT",
