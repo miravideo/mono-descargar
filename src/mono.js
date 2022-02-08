@@ -86,9 +86,9 @@ class DownloadManager {
 
   download(item) {
     const name = safePath(item.meta?.name || ('mono-' + md5(item.url) + '.mp4'));
+    const headers = { referer: window.location.href, ...(item.meta?.headers || {}) };
     const opts = {
-      url: item.url, name,
-      headers: item.meta.headers,
+      url: item.url, name, headers,
       onprogress: res => {
         let progress = res;
         if (typeof res === 'object' && res.loaded && res.total) {
