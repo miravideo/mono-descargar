@@ -1,5 +1,5 @@
 <template>
-  <div :id="id" class="mono-dsg-container">
+  <div :id="id" :mono-dsg-id="item.id" class="mono-dsg-container">
     <div class="mono-dsg-btn-bg" @click="download" :style="transform" :offsetx="itm.position.x" :offsety="itm.position.y" >
       <div class="mono-dsg-btn" :status="itm.status">
         <svg class="mono-dsg-icon mono-dsg-icon-init" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"><path d="M24.008 41.99a.01.01 0 0 1-.016 0l-9.978-11.974A.01.01 0 0 1 14.02 30H33.98a.01.01 0 0 1 .007.016l-9.978 11.975Z"></path><path d="M24 42 14 30h20L24 42Z" fill="currentColor" stroke="none"></path><path d="M22 6h4v26h-4z"></path><path fill="currentColor" stroke="none" d="M22 6h4v26h-4z"></path></svg>
@@ -31,6 +31,10 @@ export default {
   mounted: function() {
     this.$set(this.itm, 'status', 'init');
     this.$set(this.itm, 'progress', 0);
+    this.$set(this.itm, 'position', { 
+      x: this.itm.position?.x || 0, 
+      y: this.itm.position?.y || 0
+    });
   },
   watch: {
   },
@@ -119,7 +123,7 @@ export default {
   box-sizing: border-box!important;
   position: absolute!important;
   min-width: @size !important;
-  top: -100%!important;
+  top: 0px!important;
   right: 0px!important;
   margin: 10px!important;
   padding: @border!important;
