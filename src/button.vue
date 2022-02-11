@@ -84,11 +84,9 @@ export default {
 @border: 4px;
 
 @bg-whit: #FFF;
-@bg-blue: #2D5DF5;
-@bg-dark: #0900A0;
-@bg-yelw: #EDDD8E;
-@bg-pink: #F5C6C0;
-@bg-gren: #60D660;
+@bg-blue: #165DFF;
+@bg-dark: #0900A9;
+@bg-gren: #08D64D;
 @bg-wave: replace(@bg-dark, "#", "");
 
 *:focus {
@@ -138,7 +136,7 @@ export default {
     line-height: 28px!important;
     word-spacing: 0!important;
     background: @bg-whit;
-    color: #EEE;
+    color: @bg-whit;
     opacity: 0.9;
     font-smooth: auto;
     -webkit-font-smoothing: auto;
@@ -156,31 +154,12 @@ export default {
       z-index: 1;
     }
 
-    &:before {
-      .bg-rad();
-      background: @bg-pink;
-      right: 0;
-      top: 0;
-      transform: rotate(-45deg) translate(-10%, 5%);
-    }
-
-    &:after {
-      .bg-rad();
-      background: @bg-yelw;
-      left: 0;
-      bottom: 0;
-      transform: rotate(135deg) translate(-10%, 5%);
-    }
-
     &:hover {
       opacity: 1.0;
       width: @hsize!important;
       color: #FFF;
       transition-property: width color opacity;
       transition-duration: @trans;
-
-      &:before { transform: rotate(-20deg) translate(-7%, 9%) ; }
-      &:after { transform: rotate(160deg) translate(-7%, 9%) ; }
 
       & .mono-dsg-label {
         width: @hsize - @size - @border;
