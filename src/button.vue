@@ -114,6 +114,7 @@ export default {
   margin: 10px!important;
   padding: 0px!important;
   position: absolute!important;
+  z-index: 9999999!important;
 
   .mono-dsg-btn-bg {
     display: flex;
@@ -127,7 +128,6 @@ export default {
     min-width: @size !important;
     margin: 0px!important;
     padding: @border!important;
-    z-index: 9999999!important;
     border-radius: @size*0.5!important;
     border: 0px!important;
     cursor: pointer!important;
