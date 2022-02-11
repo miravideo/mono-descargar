@@ -90,15 +90,11 @@ class DownloadManager {
     const opts = {
       url: item.url, name, headers,
       onprogress: res => {
-        let progress = res;
-        if (typeof res === 'object' && res.loaded && res.total) {
-          progress = res.loaded / res.total;
+        let progress = 0;
+        if (typeof res === 'object' && res.loaded > 0 && res.total > 0) {
+          progress = Number(res.loaded / res.total);
         }
-        if (progress) {
-          try {
-            item.progress = parseFloat(progress);
-          } catch (e) {}
-        }
+        if (!isNaN(progress) && progress > 0) item.progress = progress;
       },
       onerror: res => {
         console.log('onerror', res);
