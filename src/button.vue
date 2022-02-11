@@ -1,5 +1,6 @@
 <template>
-  <div class="mono-dsg-btn" :id="id" :mono-dsg-id="item.id" :style="transform" :offsetx="itm.position.x" :offsety="itm.position.y">
+  <div class="mono-dsg-btn" :id="id" :mono-dsg-id="item.id" :style="transform"
+    :offsetx="(itm.position ? itm.position.x : 0)" :offsety="(itm.position ? itm.position.y : 0)">
     <div class="mono-dsg-btn-bg" @click="download">
       <div class="mono-dsg-btn-inner" :status="itm.status">
         <svg class="mono-dsg-icon mono-dsg-icon-init" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"><path d="M24.008 41.99a.01.01 0 0 1-.016 0l-9.978-11.974A.01.01 0 0 1 14.02 30H33.98a.01.01 0 0 1 .007.016l-9.978 11.975Z"></path><path d="M24 42 14 30h20L24 42Z" fill="currentColor" stroke="none"></path><path d="M22 6h4v26h-4z"></path><path fill="currentColor" stroke="none" d="M22 6h4v26h-4z"></path></svg>
@@ -40,6 +41,7 @@ export default {
   },
   computed: {
     transform: function() {
+      if (!this.itm.position?.x && !this.itm.position?.y) return '';
       return `transform: translate3d(${this.itm.position.x}px, ${this.itm.position.y}px, 0px) scale(1);`;
     },
     status: function () {

@@ -54,7 +54,7 @@ class DownloadManager {
     for (var i in newItems) {
       var item = newItems[i];
       var oldItem = this.items[item.id];
-      if (oldItem) {
+      if (oldItem && oldItem.$vm) {
         // 找到id，就不做任何操作了
         if ($(`#${oldItem.$vm.id}`).length > 0) continue;
         if (oldItem.meta != item.meta && oldItem.$vm) oldItem.$vm.remove();
