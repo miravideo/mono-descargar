@@ -39,7 +39,7 @@ class DownloadManager {
       items = await this.parser();
     } catch (error) {
       // failover to defaultParser
-      if (error === FAIL_TO_DEFAULT && parser != defaultParser) {
+      if (error === FAIL_TO_DEFAULT && this.parser != defaultParser) {
         items = await defaultParser();
       } else {
         console.log("parser error", error)
