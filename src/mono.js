@@ -88,7 +88,7 @@ class DownloadManager {
     const name = safePath(item.meta?.name || ('mono-' + md5(item.url) + '.mp4'));
     const headers = { referer: window.location.href, ...(item.meta?.headers || {}) };
     const opts = {
-      url: item.url, name, headers,
+      url: item.url, name, headers, meta: item.meta,
       onprogress: res => {
         let progress = 0;
         if (typeof res === 'object' && res.loaded > 0 && res.total > 0) {
@@ -113,7 +113,7 @@ class DownloadManager {
     } else if (item.meta?.audio) {
       opts.data = item.meta.audio;
       opts.type = 'merge';
-    } else {
+    } else if (!opts.type) {
       opts.type = 'download';
     }
 
