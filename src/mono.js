@@ -85,10 +85,13 @@ class DownloadManager {
   }
 
   download(item) {
-    const name = safePath(item.meta?.name || ('mono-' + md5(item.url) + '.mp4'));
-    const headers = { referer: window.location.href, ...(item.meta?.headers || {}) };
+    const meta = item.meta || {};
+    meta.pageUrl = window?.location?.href;
+    meta.pageTitle = document?.title;
+    const name = safePath(meta.name || ('mono-' + md5(item.url) + '.mp4'));
+    const headers = { referer: meta.pageUrl, ...(meta.headers || {}) };
     const opts = {
-      url: item.url, name, headers, meta: item.meta,
+      url: item.url, name, headers, meta,
       onprogress: res => {
         let progress = 0;
         if (typeof res === 'object' && res.loaded > 0 && res.total > 0) {
@@ -107,11 +110,11 @@ class DownloadManager {
     }
 
     // download handler
-    if (item.meta?.m3u8Data) {
-      opts.data = item.meta.m3u8Data;
+    if (meta.m3u8Data) {
+      opts.data = meta.m3u8Data;
       opts.type = 'm3u8';
-    } else if (item.meta?.audio) {
-      opts.data = item.meta.audio;
+    } else if (meta.audio) {
+      opts.data = meta.audio;
       opts.type = 'merge';
     } else if (!opts.type) {
       opts.type = 'download';
