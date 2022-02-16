@@ -39,7 +39,7 @@
       if (!url) return;
 
       const meta = {
-        name: `${filename(document.title || 'filename')}.mp4`,
+        name: filename(document.title || 'filename'),
         headers: [], // custom headers if needed
         title: '...',
       };
