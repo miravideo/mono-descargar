@@ -23,6 +23,11 @@
     // fail over to default parser if needed
     // if (window.location.href === '...') throw useDefaultErr;
 
+    const filename = (title) => {
+      var name = title.replace(' ', '').replace(/[/\\?%*:|"<>]/g, '-');
+      return `${name}.mp4`;
+    }
+
     const items = [];
     $('video').each(function (i) {
       let url;
@@ -34,7 +39,7 @@
       if (!url) return;
 
       const meta = {
-        name: 'filename.mp4',
+        name: `${filename(document.title || 'filename')}.mp4`,
         headers: [], // custom headers if needed
         title: '...',
       };
