@@ -8,6 +8,40 @@ const md5 = require('blueimp-md5');
 const FAIL_TO_DEFAULT = 999;
 const DEFAULT_INTER = 50;
 
+const win = unsafeWindow || window;
+if (!win['mono-pionero']) {
+  let listener;
+
+  const origOpen = XMLHttpRequest.prototype.open;
+  XMLHttpRequest.prototype.open = function(method, url, ...rest) {
+    this.addEventListener('load', function() {
+      try {
+        const data = {method, url, resp: this.responseText};
+        if (listener) listener(data);
+      } catch (e) {}
+    });
+    origOpen.call(this, method, url, ...rest);
+  };
+
+  const originFetch = fetch;
+  win.fetch = async (url, request) => {
+    const response = await originFetch(url, request);
+    try {
+      const data = {method, url, resp: await response.text()};
+      if (listener) listener(data);
+    } catch (e) {}
+    return response;
+  }
+
+  win['mono-pionero'] = {
+    onRequest: (func) => {
+      listener = func
+    }
+  }
+} else {
+  // console.log('use window pionero!');
+}
+
 class DownloadManager {
   constructor({ parser, interval }) {
     this.items = {};
@@ -130,6 +164,7 @@ export default {
   FAIL_TO_DEFAULT,
   jQuery: $,
   md5,
+  onRequest: win['mono-pionero'].onRequest,
   init: (options) => {
     if (!instance) instance = new DownloadManager(options || {});
     return instance;

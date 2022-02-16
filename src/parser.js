@@ -15,16 +15,6 @@ module.exports = async function () {
     if (!url) return;
 
     const meta = {};
-    // use HLS data instead
-    if (url.startsWith('blob:')) {
-      if (m3u8.url && m3u8.data) {
-        url = m3u8.url;
-        meta.m3u8Data = m3u8.data;
-      } else {
-        return;
-      }
-    }
-
     const id = `mono-${md5(url)}`
     const container = this.parentElement;
     const position = { x: -10, y: 10 };
