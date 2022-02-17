@@ -2,7 +2,7 @@
 import Vue from 'vue';
 const $ = require('jquery');
 const defaultParser = require('./parser');
-const { getCurrentTime, deepCopy, isActiveWindow, safePath } = require('./util.js');
+const { getCurrentTime, deepCopy, isActiveWindow, filename } = require('./util.js');
 const { enableDrag } = require('./drag.js');
 const md5 = require('blueimp-md5');
 const FAIL_TO_DEFAULT = 999;
@@ -122,7 +122,7 @@ class DownloadManager {
     const meta = item.meta || {};
     meta.pageUrl = window?.location?.href;
     meta.pageTitle = document?.title;
-    const name = safePath(meta.name || ('mono-' + md5(item.url) + '.mp4'));
+    const name = filename(meta.name || meta.pageTitle);
     const headers = { referer: meta.pageUrl, ...(meta.headers || {}) };
     const opts = {
       url: item.url, name, headers, meta,
@@ -134,11 +134,11 @@ class DownloadManager {
         if (!isNaN(progress) && progress > 0) item.progress = progress;
       },
       onerror: res => {
-        console.log('onerror', res);
+        // console.log('onerror', res);
         setTimeout(() => item.status = 'init', 500);
       },
       onload: res => {
-        console.log('onload', res);
+        // console.log('onload', res);
         item.status = 'done';
       }
     }
@@ -164,6 +164,7 @@ export default {
   FAIL_TO_DEFAULT,
   jQuery: $,
   md5,
+  filename,
   onRequest: win['mono-pionero'].onRequest,
   init: (options) => {
     if (!instance) instance = new DownloadManager(options || {});

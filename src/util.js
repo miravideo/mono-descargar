@@ -7,8 +7,9 @@ export const isTopWindow = () => {
   return window.location.href === unsafeWindow.top.location.href;
 }
 
-export const safePath = (path) => {
-  return path.replace(/[/\\?%*:|"<>]/g, '-');
+export const filename = (title, ext='mp4') => {
+  var name = title.replace(' ', '').replace(/[/\\?%*:|"<>]/g, '-');
+  return `${name}.${ext}`;
 }
 
 const URL = window.URL || window.webkitURL;
