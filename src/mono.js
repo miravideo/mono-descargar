@@ -6,7 +6,7 @@ const { getCurrentTime, deepCopy, isActiveWindow, safePath } = require('./util.j
 const { enableDrag } = require('./drag.js');
 const md5 = require('blueimp-md5');
 const FAIL_TO_DEFAULT = 999;
-const DEFAULT_INTER = 50;
+const DEFAULT_INTER = 100;
 
 const win = unsafeWindow || window;
 if (!win['mono-pionero']) {
@@ -65,7 +65,7 @@ class DownloadManager {
   async updateItems() {
     // 如果不是当前tab且不是自动下载的状态，就降频刷新
     if (!isActiveWindow()) { //  && !settings.useAuto
-      return setTimeout(() => this.updateItems(), this.interval * 100);
+      return setTimeout(() => this.updateItems(), this.interval * 10);
     }
 
     let items;
