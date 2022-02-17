@@ -135,7 +135,10 @@ class DownloadManager {
       },
       onerror: res => {
         // console.log('onerror', res);
-        setTimeout(() => item.status = 'init', 500);
+        setTimeout(() => item.status = 'failed', 500);
+      },
+      onabort: () => {
+        setTimeout(() => item.status = 'failed', 500);
       },
       onload: res => {
         // console.log('onload', res);

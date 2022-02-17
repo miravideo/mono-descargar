@@ -5,6 +5,7 @@
       <div class="mono-dsg-btn-inner" :status="itm.status">
         <svg class="mono-dsg-icon mono-dsg-icon-init" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"><path d="M24.008 41.99a.01.01 0 0 1-.016 0l-9.978-11.974A.01.01 0 0 1 14.02 30H33.98a.01.01 0 0 1 .007.016l-9.978 11.975Z"></path><path d="M24 42 14 30h20L24 42Z" fill="currentColor" stroke="none"></path><path d="M22 6h4v26h-4z"></path><path fill="currentColor" stroke="none" d="M22 6h4v26h-4z"></path></svg>
         <svg class="mono-dsg-icon mono-dsg-icon-done" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg class="mono-dsg-icon mono-dsg-icon-failed" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"><path d="M23 9h2v21h-2z"></path><path fill="currentColor" stroke="none" d="M23 9h2v21h-2z"></path><path d="M23 37h2v2h-2z"></path><path fill="currentColor" stroke="none" d="M23 37h2v2h-2z"></path></svg>
         <div class="mono-dsg-icon mono-dsg-icon-loading">
           <div class="mono-dsg-icon-prg">{{progress}}</div>
           <div class="mono-dsg-icon-wave" :style="{'--progress': `${80 + i*5 - progress*1.3}%`}"
@@ -18,7 +19,7 @@
 <script>
 const md5 = require('blueimp-md5');
 const STATUS = {
-  init: "下载", loading: "下载中", done: "已完成"
+  init: "下载", loading: "下载中", done: "已完成", failed: "已取消"
 }
 export default {
   props: ['item'],
@@ -89,6 +90,7 @@ export default {
 @bg-blue: #165DFF;
 @bg-dark: #0900A9;
 @bg-gren: #08D64D;
+@bg-red:  #F53F3F;
 @bg-wave: replace(@bg-dark, "#", "");
 
 *:focus {
@@ -204,7 +206,7 @@ export default {
 
       .mono-dsg-icon-loading {
         position: relative;
-        font-size: 18px;
+        font-size: 15px;
         width: @isize;
         height: @isize;
 
@@ -212,11 +214,11 @@ export default {
           content: "%";
           display: block;
           position: absolute;
-          color: rgba(255, 255, 255, 0.5);
+          color: rgba(255, 255, 255, 0.75);
           font-size: 12px;
           top: @border;
-          left: @isize - 6px;
-          transform: scale(0.5);
+          left: @isize - 9px;
+          transform: scale(0.9);
         }
 
         .mono-dsg-icon-prg {
@@ -284,6 +286,15 @@ export default {
         }
       } 
 
+      &[status="failed"] {
+        background-color: @bg-red;
+        transition-property: background-color;
+        transition-duration: @trans;
+
+        & > .mono-dsg-icon-failed {
+          display: block;
+        }
+      } 
     }
   }
 }
