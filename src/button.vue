@@ -60,6 +60,7 @@ export default {
       e.preventDefault();
       const btn = e.target.parentNode;
       if ((btn.getAttribute('hasMove') || 0) > 0) return false;
+      if (this.itm.status === 'loading') return false;
       this.itm.status = 'loading';
       this.$emit('download', this.itm);
       // this.moke();
