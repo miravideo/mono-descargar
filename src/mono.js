@@ -122,7 +122,7 @@ class DownloadManager {
     const meta = item.meta || {};
     meta.pageUrl = window?.location?.href;
     meta.pageTitle = document?.title;
-    const name = filename(meta.name || meta.pageTitle);
+    const name = meta.name || filename(meta.pageTitle);
     const headers = { referer: meta.pageUrl, ...(meta.headers || {}) };
     const opts = {
       url: item.url, name, headers, meta,
