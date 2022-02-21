@@ -51,10 +51,12 @@ class DownloadManager {
 
   start(interval) {
     this.interval = Number(interval) || DEFAULT_INTER;
-    $(document).ready(() => {
+    if (document && document.body) {
       enableDrag('mono-dsg-btn');
       this.updateItems();
-    });
+    } else {
+      setTimeout(() => this.start(interval), interval);
+    }
   }
 
   setParser(parser) {
