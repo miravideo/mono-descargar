@@ -103,7 +103,7 @@ class DownloadManager {
 
   renderItem(item) {
     if (!item.container) return;
-    const key = 'data-mono-descargar';
+    const key = 'mono-dsg-id';
     const children = $(item.container).find(`[${key}]`);
     // 如果container下已经有按钮了，需要检查，避免重复添加
     if (children.length > 0) {
