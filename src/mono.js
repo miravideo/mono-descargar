@@ -24,10 +24,12 @@ if (!win['mono-pionero']) {
   };
 
   const originFetch = fetch;
-  win.fetch = async (url, request) => {
+  unsafeWindow.fetch = async (url, request) => {
     const response = await originFetch(url, request);
     try {
-      const data = {method, url, resp: await response.text()};
+      const text = response.text();
+      const data = {method: 'fetch', url, resp: await text};
+      response.text = () => { return new Promise((resolve) => { resolve(data.resp) }) }
       if (listener) listener(data);
     } catch (e) {}
     return response;
