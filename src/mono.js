@@ -15,6 +15,7 @@ if (!win['mono-pionero']) {
   const origOpen = XMLHttpRequest.prototype.open;
   XMLHttpRequest.prototype.open = function(method, url, ...rest) {
     this.addEventListener('load', function() {
+      if (this.responseType && this.responseType !== "text") return;
       try {
         const data = {method, url, resp: this.responseText};
         if (listener) listener(data);
@@ -27,9 +28,8 @@ if (!win['mono-pionero']) {
   unsafeWindow.fetch = async (url, request) => {
     const response = await originFetch(url, request);
     try {
-      const text = response.text();
-      const data = {method: 'fetch', url, resp: await text};
-      response.text = () => { return new Promise((resolve) => { resolve(data.resp) }) }
+      const resp = response.clone();
+      const data = {method: 'fetch', url, resp: await resp.text()};
       if (listener) listener(data);
     } catch (e) {}
     return response;
