@@ -1,7 +1,4 @@
 'use strict';
-if (Object._defineProperty) Object.defineProperty = Object._defineProperty;
-if (window._MutationObserver) window.MutationObserver = window._MutationObserver;
-
 import Vue from 'vue';
 const $ = require('jquery');
 const defaultParser = require('./parser');
