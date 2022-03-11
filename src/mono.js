@@ -1,4 +1,7 @@
 'use strict';
+if (Object._defineProperty) Object.defineProperty = Object._defineProperty;
+if (window._MutationObserver) window.MutationObserver = window._MutationObserver;
+
 import Vue from 'vue';
 const $ = require('jquery');
 const defaultParser = require('./parser');
@@ -7,9 +10,6 @@ const { enableDrag } = require('./drag.js');
 const md5 = require('blueimp-md5');
 const FAIL_TO_DEFAULT = 999;
 const DEFAULT_INTER = 100;
-
-if (Object._defineProperty) Object.defineProperty = Object._defineProperty;
-if (window._MutationObserver) window.MutationObserver = window._MutationObserver;
 
 const win = unsafeWindow || window;
 if (!win['mono-pionero']) {
