@@ -154,6 +154,9 @@ class DownloadManager {
     if (meta.m3u8Data) {
       opts.data = meta.m3u8Data;
       opts.type = 'm3u8';
+    } else if (meta.mpdData) {
+      opts.data = meta.mpdData;
+      opts.type = 'mpd';
     } else if (meta.audio) {
       opts.data = meta.audio;
       opts.type = 'merge';
