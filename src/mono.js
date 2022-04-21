@@ -165,6 +165,9 @@ class DownloadManager {
     } else if (meta.audio) {
       opts.data = meta.audio;
       opts.type = 'merge';
+    } else if (meta.dataType) {
+      opts.data = meta.data;
+      opts.type = meta.dataType;
     } else if (!opts.type) {
       opts.type = 'download';
     }
