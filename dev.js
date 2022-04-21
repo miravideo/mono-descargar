@@ -19,7 +19,7 @@ app.get('/mono.*.js', (req, res) => {
 })
 
 app.get('/*', (req, res) => {
-  res.send(`Hola! ${req.headers['user-agent']} ${req.originalUrl} ${req.url}`)
+  res.send(`Hola! ${JSON.stringify(req.headers)} ${req.originalUrl} ${req.url}`)
 })
 
 app.listen(port, () => {

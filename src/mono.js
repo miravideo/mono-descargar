@@ -124,8 +124,13 @@ class DownloadManager {
 
   download(item) {
     const meta = item.meta || {};
-    meta.pageUrl = window.top?.location?.href || window?.location?.href;
-    meta.pageTitle = window.top?.document?.title || document?.title;
+    try {
+      meta.pageUrl = window.top?.location?.href || window?.location?.href;
+      meta.pageTitle = window.top?.document?.title || document?.title;
+    } catch (e) {
+      meta.pageUrl = window?.location?.href;
+      meta.pageTitle = document?.title;
+    }
     const name = meta.name || filename(meta.pageTitle);
     const headers = { referer: meta.pageUrl, ...(meta.headers || {}) };
     const opts = {
