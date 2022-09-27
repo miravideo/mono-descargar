@@ -94,8 +94,11 @@ class DownloadManager {
       var oldItem = this.items[item.id];
       if (oldItem && oldItem.$vm) {
         // 找到id，就不做任何操作了
-        if ($(`#${oldItem.$vm.id}`).length > 0) continue;
-        if (oldItem.meta != item.meta && oldItem.$vm) oldItem.$vm.remove();
+        if ($(item.container).find(`#${oldItem.$vm.id}`).length > 0) {
+          continue;
+        }
+        oldItem.$vm.remove();
+        $(`#${oldItem.$vm.id}`)?.remove()
       } else {
         this.items[item.id] = item;
       }

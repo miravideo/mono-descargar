@@ -1,7 +1,7 @@
 <template>
   <div class="mono-dsg-btn" :id="id" :mono-dsg-id="item.id" :style="transform"
     :offsetx="(itm.position ? itm.position.x : 0)" :offsety="(itm.position ? itm.position.y : 0)">
-    <div class="mono-dsg-btn-bg" @click="download">
+    <div class="mono-dsg-btn-bg" @click="download" :style="{zIndex: itm.zIndex || '9999999 !important'}">
       <div class="mono-dsg-btn-inner" :status="itm.status">
         <svg class="mono-dsg-icon mono-dsg-icon-init" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" stroke-width="6" stroke-linecap="butt" stroke-linejoin="miter"><path d="M24.008 41.99a.01.01 0 0 1-.016 0l-9.978-11.974A.01.01 0 0 1 14.02 30H33.98a.01.01 0 0 1 .007.016l-9.978 11.975Z"></path><path d="M24 42 14 30h20L24 42Z" fill="currentColor" stroke="none"></path><path d="M22 6h4v26h-4z"></path><path fill="currentColor" stroke="none" d="M22 6h4v26h-4z"></path></svg>
         <svg class="mono-dsg-icon mono-dsg-icon-done" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M4 24L9 19L19 29L39 9L44 14L19 39L4 24Z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -33,8 +33,8 @@ export default {
   mounted: function() {
     this.$set(this.itm, 'status', 'init');
     this.$set(this.itm, 'progress', 0);
-    this.$set(this.itm, 'position', { 
-      x: this.itm.position?.x || 0, 
+    this.$set(this.itm, 'position', {
+      x: this.itm.position?.x || 0,
       y: this.itm.position?.y || 0
     });
   },
@@ -58,6 +58,7 @@ export default {
     },
     download: function(e) {
       e.preventDefault();
+			e.stopPropagation(); // 抖音列表页 阻止点击事件的透传
       const btn = e.target.parentNode;
       if ((btn.getAttribute('hasMove') || 0) > 0) return false;
       if (this.itm.status === 'loading') return false;
@@ -119,7 +120,6 @@ export default {
   margin: 10px!important;
   padding: 0px!important;
   position: absolute!important;
-  z-index: 9999999!important;
 
   .mono-dsg-btn-bg {
     display: flex;
@@ -285,7 +285,7 @@ export default {
         & > .mono-dsg-icon-done {
           display: block;
         }
-      } 
+      }
 
       &[status="failed"] {
         background-color: @bg-red;
@@ -295,7 +295,7 @@ export default {
         & > .mono-dsg-icon-failed {
           display: block;
         }
-      } 
+      }
     }
   }
 }
